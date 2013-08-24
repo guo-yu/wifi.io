@@ -8,34 +8,27 @@ var API = function(type, params) {
 var routerMap = function(type, params) {
     var map = {
         user: {
-            add: 'devices',
-            list: 'devices',
-            update: 'device/' + params.device_id,
-            read: 'device/' + params.device_id,
-            remove: 'device/' + params.device_id
+            login: 'user/login.php',
+            logout: 'user/logout.php',
+            devices: 'user/get_devices.php'
         },
         device: {
-            add: 'device' + device_id + '/sensors',
-            list: 'device' + device_id + '/sensors',
-            update: 'device/' + params.device_id + '/sensor/' + params.sensor_id,
-            read: 'device/' + params.device_id + '/sensor/' + params.sensor_id,
-            remove: 'device/' + params.device_id + '/sensor/' + params.sensor_id
+            command: 'device/command.php'
         },
         data: {
-            add: 'device' + device_id + '/sensors/datapoints',
-            update: 'device/' + params.device_id + '/sensor/' + params.sensor_id + '/datapoint/' + params.sign,
-            read: 'device/' + params.device_id + '/sensor/' + params.sensor_id + '/datapoint/' + params.sign,
-            remove: 'device/' + params.device_id + '/sensor/' + params.sensor_id + '/datapoint/' + params.sign
+            get: 'data/get_data.php',
+            getByKey: 'data/get_by_key.php',
+            insert: 'data/insert.php'
         }
     }
     return map[type][params.action];
 }
 
-API.prototype.add = function(device_id, cb) {
+API.prototype.login = function(cb) {
     var info = this.parent,
         self = this;
     api.post(info.server + routerMap(self.type, {
-        action: 'add'
+        action: 'login'
     }), {
         headers: {
             'U-ApiKey': self.key
