@@ -114,3 +114,12 @@ local.device.command({
 - feel free to add your feature
 - make sure your feature are fully tested!
 - send me a PR, and enjoy !
+
+### Run unit-test (Mocha)
+
+````
+$ git clone https://github.com/turingou/beer.git
+$ cd beer
+$ npm install // will install mocha localy
+$ npm test
+````
