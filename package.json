@@ -1,6 +1,6 @@
 {
   "name": "wifi",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "wifi.io node.js sdk",
   "main": "index.js",
   "scripts": {

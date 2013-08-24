@@ -7,7 +7,7 @@
 // @brief: wifi.io node.js sdk
 // @author: [turingou](http://guoyu.me)
 
-var API = require('./api');
+var API = require('./lib/api');
 
 var Wifi = function(params) {
     this.account = params.account;
