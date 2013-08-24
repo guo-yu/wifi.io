@@ -7,21 +7,21 @@ var API = function(type, params) {
 
 var routerMap = function(type, params) {
     var map = {
-        device: {
+        user: {
             add: 'devices',
             list: 'devices',
             update: 'device/' + params.device_id,
             read: 'device/' + params.device_id,
             remove: 'device/' + params.device_id
         },
-        sensor: {
+        device: {
             add: 'device' + device_id + '/sensors',
             list: 'device' + device_id + '/sensors',
             update: 'device/' + params.device_id + '/sensor/' + params.sensor_id,
             read: 'device/' + params.device_id + '/sensor/' + params.sensor_id,
             remove: 'device/' + params.device_id + '/sensor/' + params.sensor_id
         },
-        datapoint: {
+        data: {
             add: 'device' + device_id + '/sensors/datapoints',
             update: 'device/' + params.device_id + '/sensor/' + params.sensor_id + '/datapoint/' + params.sign,
             read: 'device/' + params.device_id + '/sensor/' + params.sensor_id + '/datapoint/' + params.sign,
@@ -29,23 +29,6 @@ var routerMap = function(type, params) {
         }
     }
     return map[type][params.action];
-}
-
-API.prototype.key = function(cb) {
-    var info = this.parent,
-        self = this;
-    if (info.account) {
-        api(info.server + 'user/apikey', {
-            username: info.account.username,
-            pass: info.account.pass
-        }, function(err, result) {
-            console.log(result.body);
-            if (!err && result.body.errcode == '0') self.key = result.body.apikey;
-            cb(err, result.body);
-        });
-    } else {
-        cb('account required')
-    }
 }
 
 API.prototype.add = function(device_id, cb) {

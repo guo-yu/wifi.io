@@ -78,6 +78,7 @@ wifi.data.get({
 },function(err,result){
     console.log(result);
 });
+````
 
 ### Local scanner supported
 

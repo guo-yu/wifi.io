@@ -12,9 +12,9 @@ var API = require('./api');
 var Wifi = function(params) {
     this.account = params.account;
     this.server = 'http://api.wifi.io/';
-    Wifi.prototype.user = new API('device',this);
-    Wifi.prototype.device = new API('sensor',this);
-    Wifi.prototype.data = new API('datapoint',this);
+    Wifi.prototype.user = new API('user',this);
+    Wifi.prototype.device = new API('device',this);
+    Wifi.prototype.data = new API('data',this);
 };
 
 module.exports = Wifi;
