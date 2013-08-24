@@ -30,67 +30,92 @@ API.prototype.login = function(cb) {
     api.post(info.server + routerMap(self.type, {
         action: 'login'
     }), {
-        headers: {
-            'U-ApiKey': self.key
-        }
+        username: info.account.username,
+        password: info.account.password
+    }, function(err, result) {
+        // self.token = result.token;
+        cb(err, result.body);
+    });
+}
+
+API.prototype.logout = function(device_id, cb) {
+    var info = this.parent,
+        self = this;
+    api.post(info.server + routerMap(self.type, {
+        action: 'logout'
+    }), {
+        token: info.token
     }, function(err, result) {
         cb(err, result.body);
     });
 }
 
-API.prototype.list = function(device_id, cb) {
+API.prototype.devices = function(params, cb) {
     var info = this.parent,
-        self = this;
-    api.get(info.server + routerMap(self.type, {
-        action: 'list'
-    }), {
-        device_id: device_id,
-        headers: {
-            'U-ApiKey': self.key
-        }
-    }, function(err, result) {
+        self = this,
+        p = params;
+    if (info.token) {
+        p['token'] = info.token;
+    }
+    api.post(info.server + routerMap(self.type, {
+        action: 'devices'
+    }), p, function(err, result) {
         cb(err, result.body);
     });
 }
 
-API.prototype.update = function() {
+API.prototype.command = function(params, cb) {
     var info = this.parent,
-        self = this;
-    api.put(info.server + routerMap(self.type, {
-        action: 'update'
-    }), {
-        headers: {
-            'U-ApiKey': self.key
-        }
-    }, function(err, result) {
+        self = this,
+        p = params;
+    if (info.token) {
+        p['token'] = info.token;
+    }
+    api.post(info.server + routerMap(self.type,{
+        action: 'command'
+    }), p, function(err, result) {
         cb(err, result.body);
     });
 }
 
-API.prototype.read = function() {
+API.prototype.get = function() {
     var info = this.parent,
-        self = this;
-    api.get(info.server + routerMap(self.type,{
-        action: 'read'
-    }), {
-        headers: {
-            'U-ApiKey': self.key
-        }
-    }, function(err, result) {
+        self = this,
+        p = params;
+    if (info.token) {
+        p['token'] = info.token;
+    }
+    api.post(info.server + routerMap(self.type,{
+        action: 'get'
+    }), p, function(err, result) {
         cb(err, result.body);
     });
 }
 
-API.prototype.remove = function() {
+API.prototype.getByKey = function() {
     var info = this.parent,
-        self = this;
-    api.delete(info.server + routerMap(self.type,{
-        action: 'remove'
-    }), {
-        headers: {
-            'U-ApiKey': self.key
-        }
-    }, function(err, result) {
+        self = this,
+        p = params;
+    if (info.token) {
+        p['token'] = info.token;
+    }
+    api.post(info.server + routerMap(self.type,{
+        action: 'getByKey'
+    }), p, function(err, result) {
+        cb(err, result.body);
+    });
+}
+
+API.prototype.insert = function() {
+    var info = this.parent,
+        self = this,
+        p = params;
+    if (info.token) {
+        p['token'] = info.token;
+    }
+    api.post(info.server + routerMap(self.type,{
+        action: 'insert'
+    }), p, function(err, result) {
         cb(err, result.body);
     });
 }

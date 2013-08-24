@@ -3,7 +3,7 @@ wifi.io sdk ![npm](https://badge.fury.io/js/wifi.png)
 
 wifi.io node.js sdk
 
-![banner](http://ww2.sinaimg.cn/large/61ff0de3gw1e7xmwi1i04j20m80cc41u.jpg)
+![banner](http://ww3.sinaimg.cn/large/61ff0de3gw1e7xn2w65nvj20m8063q49.jpg)
 
 ### How to install 
 
