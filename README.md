@@ -78,3 +78,25 @@ wifi.data.get({
 },function(err,result){
     console.log(result);
 });
+
+### Local scanner supported
+
+````javascript
+// init local instance
+var local = new Wifi().scan();
+
+// send command
+local.device.command({
+    method: 'reboot', // 要执行的方法名称
+    params: {} // 需要传递的参数
+},function(err,result){
+    console.log(result);
+});
+````
+
+### Pull Request Welcome !
+
+- fork this repo
+- feel free to add your feature
+- make sure your feature are fully tested!
+- send me a PR, and enjoy !
