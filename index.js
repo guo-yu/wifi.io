@@ -10,7 +10,7 @@
 var API = require('./lib/api');
 
 var Wifi = function(params) {
-    this.account = params.account;
+    if (params) this.account = params;
     this.server = 'http://api.wifi.io/';
     Wifi.prototype.user = new API('user',this);
     Wifi.prototype.device = new API('device',this);
